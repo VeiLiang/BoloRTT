@@ -1,0 +1,23 @@
+{
+    "files.associations": {
+        "initializer_list": "c",
+        "type_traits": "c",
+        "vector": "c",
+        "xstring": "c",
+        "xutility": "c",
+        "list": "cpp",
+        "string": "cpp",
+        "xtree": "cpp",
+        "cstdio": "c",
+        "xlocale": "cpp",
+        "drv_gpio.h": "c",
+        "xiosbase": "cpp",
+        "memory": "cpp",
+        "tuple": "cpp",
+        "utility": "cpp",
+        "xmemory0": "cpp",
+        "xtr1common": "cpp",
+        "istream": "c",
+        "system_error": "cpp"
+    }
+}

@@ -1,0 +1,49 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "C/C++: arm-eabi-gcc build active file",
+			"command": "scons",
+			"args": [
+				"-j8",
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\bsp\\f1c",
+			},
+			"problemMatcher": {
+				"fileLocation": ["relative", "${workspaceFolder}\\bsp\\f1c\\"],
+				"pattern": {
+					"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+					"file": 1, 
+					"line": 2,
+					"column": 3,
+					"severity": 4,
+					"message": 5
+				}
+			},
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+        },
+        {
+			"type": "shell",
+			"label": "sunxi-fel download bin file",
+			"command": "${workspaceFolder}\\bsp\\f1c\\tools\\sunxi-fel.exe",
+			"args": [
+                "-p",
+                "spiflash-write",
+                "0x0000",
+                "rtthread.bin",
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\bsp\\f1c",
+			},
+			"group": {
+				"kind": "test",
+				"isDefault": true
+			}
+		}
+	]
+}

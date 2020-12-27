@@ -1,0 +1,23 @@
+menu "LVGL Config"
+	config LV_CONF_HOR_RES
+		int "Horizontal resolution"
+		range 1 1920
+		default 480
+	config LV_CONF_VER_RES
+		int "Vertical resolution"
+		range 1 1080
+		default 272 
+	choice
+		prompt "Select Color Depth"
+		default LV_COLOR_DEPTH_16
+		
+		config LV_COLOR_DEPTH_1
+			bool "Use 1 bit Color Depth"
+		config LV_COLOR_DEPTH_8
+			bool "Use 8 bit Color Depth"
+		config LV_COLOR_DEPTH_16
+			bool "Use 16 bit Color Depth"
+		config LV_COLOR_DEPTH_32
+			bool "Use 32 bit Color Depth"	
+	endchoice
+endmenu
