@@ -13,6 +13,8 @@
 #include "drv_tvd.h"
 #include "bolo_jpeg.h"
 #include "logo_data.h"
+#include "drv_audio.h"
+#include "InfoNES.h"
 
 int fb_num = 0 ;
 unsigned int fb_addr[2] = {0x81800000,0x81A00000};
@@ -208,7 +210,7 @@ FINSH_FUNCTION_EXPORT_ALIAS(cmd_jpegdec, __cmd_jpegdec, decode jpeg and disp to 
 
 extern unsigned char tvd_y_buf_disp[720*576];
 extern unsigned char tvd_c_buf_disp[720*576];
-
+extern const unsigned char nes_rom[];
 int main(int argc, char **argv)
 {
 	rt_kprintf("Start...\n");
@@ -234,6 +236,9 @@ int main(int argc, char **argv)
 	//i2c_f1c100s_init(0);
 	//dvp_camera_init(648,480,16);
 	//i2c_debugdump();
+	f1c100s_audio_init();
+	InfoNES_Load(nes_rom);
+	InfoNES_Main();//program will floop in this function
 	while(1)
 	{
 		rt_thread_delay(20);
