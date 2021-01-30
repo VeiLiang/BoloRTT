@@ -1,5 +1,5 @@
 # RT-Thread For Bolopi#
-[中文页](README_zh.md) |
+[中文页](README_zh.md) 
 ## Overview ##
 
 Bolopi-F1 is a all io extracted for f1c100s development board.Such like 40pin rgb lcd,dvp(camera),audio,tv in (cvbs),tv out,SDIO ...
@@ -26,7 +26,7 @@ Now that you've chosen Linux, sure you can handle all things
 RT-Thread RTOS uses [scons](http://www.scons.org) as building system. Therefore, please install scons and Python 2.7 firstly. 
 So far, the RT-Thread scons building system support the command line compile or generate some IDE's project. There are some option varaibles in the scons building script (rtconfig.py):
 
-* ```CROSS_TOOL``` the compiler need to use arm-eabi-gcc 
+* ```CROSS_TOOL``` the compiler need to ```use arm-eabi-gcc``` 
 * ```EXEC_PATH``` the path of compiler. 
 
 In SConstruct file:
@@ -40,12 +40,16 @@ When you set these variables correctly, you can use command:
 under BSP directory to simplely compile RT-Thread RTOS.
 
 like build command:
-cd ./bsp/f1c/
-scons -j8
+
+    cd ./bsp/f1c/
+    scons -j8
+
 
 clean command:
-cd ./bsp/f1c/
-scons -c
+
+    cd ./bsp/f1c/
+    scons -c
+
  
 NOTE: RT-Thread scons building system will tailor the system according to your rtconfig.h configuration header file. For example, if you disable the lwIP in the rtconfig.h by commenting the ```#define RT_USING_LWIP```, the generated project file should have no lwIP related files. 
 
