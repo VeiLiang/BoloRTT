@@ -157,16 +157,6 @@ void TestLayer()
 	Layer_Config(1,&lcd_layer1);
 	Layer_Config(2,&lcd_layer2);	
 }
-rt_event_t time_20ms_even;
-void Time20ms_proc(void* para)
-{
-	while(1)
-	{
-		rt_thread_delay(20);
-		rt_event_send(time_20ms_even, 1);
-	}
-}
-
 
 
 int cmd_jpegdec(int argc, char **argv)
@@ -210,13 +200,13 @@ FINSH_FUNCTION_EXPORT_ALIAS(cmd_jpegdec, __cmd_jpegdec, decode jpeg and disp to 
 
 extern unsigned char tvd_y_buf_disp[720*576];
 extern unsigned char tvd_c_buf_disp[720*576];
-extern const unsigned char nes_rom[];
+extern const unsigned char nes_rom[786464];
 int main(int argc, char **argv)
 {
 	rt_kprintf("Start...\n");
 	rt_kprintf("periph_get_pll_clk:%d\n", periph_get_pll_clk());
     rt_kprintf("cpu_get_clk:%d\n", cpu_get_clk());
-    rt_kprintf("ahb_get_clk:%d\n", ahb_get_clk());
+    rt_kprintf("ahb_get_clk:%d\n", ahb_get_clk()); 
     rt_kprintf("apb_get_clk:%d\n", apb_get_clk());
 	rt_kprintf("heap start:0x%08x\nheap stop : 0x%08x\n", RT_HW_HEAP_BEGIN,RT_HW_HEAP_END);
 	jpeg_decoder_init();
@@ -237,8 +227,9 @@ int main(int argc, char **argv)
 	//dvp_camera_init(648,480,16);
 	//i2c_debugdump();
 	f1c100s_audio_init();
-	InfoNES_Load(nes_rom);
-	InfoNES_Main();//program will floop in this function
+	// InfoNES_Load(nes_rom);
+	// InfoNES_Main();//program will floop in this function
+	nes_load(nes_rom,sizeof(nes_rom));
 	while(1)
 	{
 		rt_thread_delay(20);
