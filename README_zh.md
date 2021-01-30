@@ -28,7 +28,7 @@ RT-Thread使用了[scons](http://www.scons.org)做为自身的编译构建系统
 
 截至目前，RT-Thread scons构建系统可以使用命令行方式编译代码，或者使用scons来生成不同IDE的工程文件。在使用scons时，需要对构建配置文件（rtconfig.py）中如下的变量进行配置：
 
-* ```CROSS_TOOL``` 本工程需要使用的gcc交叉编译工具链arm-eabi-gcc  
+* ```CROSS_TOOL``` 本工程需要使用的gcc交叉编译工具链```arm-eabi-gcc```  
 * ```EXEC_PATH``` 工具链的路径. 
 
 注：在SConstruct文件中：
@@ -42,12 +42,14 @@ RT-Thread使用了[scons](http://www.scons.org)做为自身的编译构建系统
 从而简单地就编译好RT-Thread。
 
 通常编译命令：
-cd ./bsp/f1c/
-scons -j8
+
+    cd ./bsp/f1c/
+    scons -j8
 
 编译清除命令
-cd ./bsp/f1c/
-scons -c
+
+    cd ./bsp/f1c/
+    scons -c
 
 注意：RT-Thread的scons构建系统会根据配置头文件rtconfig.h来裁剪系统。例如，如果你关闭了rtconfig.h中的lwIP定义（通过注释掉```#define RT_USING_LWIP```的方式），则scons生成的IDE工程文件中将自动不包括lwIP相关的文件。而在RT-Thread 3.0版本中，可以通过menuconfig的方式来配置整个系统，而不需要再手工更改rtconfig.h配置头文件。
 
