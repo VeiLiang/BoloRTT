@@ -1,8 +1,9 @@
-# RT-Thread For Bolopi#
+# RT-Thread For Bolopi #
 [中文页](README_zh.md) 
 ## Overview ##
 
 Bolopi-F1 is a all io extracted for f1c100s development board.Such like 40pin rgb lcd,dvp(camera),audio,tv in (cvbs),tv out,SDIO ...
+Any question about f1c100s ,welcome click https://whycan.com wa cool bbs have a look...
 
 RT-Thread is an open source IoT operating system from China, which has strong scalability: from a tiny kernel running on a tiny core, for example ARM Cortex-M0, or Cortex-M3/4/7, to a rich feature system running on MIPS32, ARM Cortex-A8, ARM Cortex-A9 DualCore etc.
 
