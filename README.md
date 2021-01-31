@@ -16,10 +16,13 @@ As a special exception, including RT-Thread RTOS header files in a file, instant
 ## IDE ##
 
 For Windows:
+
 This project is cross build in windows system.
 So we suggest you chooes visual studio code as ide for development.
 In that case,you can build project through press the hot key "Ctrl+Shift+B",and downlode firmware through click Terminal-RunTask "sunxi-fel download bin file"
+
 For Linux:
+
 Now that you've chosen Linux, sure you can handle all things
 
 ## Usage ##
