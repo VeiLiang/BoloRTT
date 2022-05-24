@@ -29,17 +29,21 @@ const static unsigned char _info_txt[] =
 {
     "V3s Rtthread Build VeiLiang\r\n"
 };
-
+extern const unsigned char nes_rom[786464];
 const struct romfs_dirent _root_dirent[] =
 {
     {ROMFS_DIRENT_DIR, "dev", 0, 0},
     {ROMFS_DIRENT_DIR, "flash", 0, 0},
 	{ROMFS_DIRENT_DIR, "nand", 0, 0},
-	{ROMFS_DIRENT_DIR, "udisk", 0, 0},
+	{ROMFS_DIRENT_DIR, "udisk0", 0, 0},
+    {ROMFS_DIRENT_DIR, "udisk1", 0, 0},
+    {ROMFS_DIRENT_DIR, "udisk2", 0, 0},
+    {ROMFS_DIRENT_DIR, "udisk3", 0, 0},
     {ROMFS_DIRENT_DIR, "mmc", 0, 0},
     {ROMFS_DIRENT_DIR, "ramfs", 0, 0},
     {ROMFS_DIRENT_DIR, "usb", 0, 0},
     {ROMFS_DIRENT_FILE, "info.txt", _info_txt, sizeof(_info_txt)},
+    {ROMFS_DIRENT_FILE, "rexuegedou.nes", nes_rom, sizeof(nes_rom)},
 };
 
 const struct romfs_dirent romfs_root =

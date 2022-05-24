@@ -6,6 +6,8 @@
 #include "malloc.h" 
 #include "string.h"
 #include "drv_audio.h"
+#include "drv_input.h"
+
 //////////////////////////////////////////////////////////////////////////////////	 
 //本程序移植自网友ye781205的NES模拟器工程
 //ALIENTEK STM32开发板
@@ -321,25 +323,56 @@ u16 nes_rgb_parm2;
 u16 nes_rgb_parm3;
 
 extern void KEYBRD_FCPAD_Decode(uint8_t *fcbuf,uint8_t mode);
+static int continue_cnt = 0;
+static int need_swap = 0;
 //读取游戏手柄数据
 void nes_get_gamepadval(void)
-{  
-	// u8 *pt;
-	// while((usbx.bDeviceState&0XC0)==0X40)//USB设备插入了,但是还没连接成功,猛查询.
-	// {
-	// 	usbapp_pulling();	//轮询处理USB事务
-	// }
-	// usbapp_pulling();		//轮询处理USB事务
-	// if(usbx.hdevclass==4)	//USB游戏手柄
-	// {	
-	// 	PADdata0=fcpad.ctrlval;
-	// 	PADdata1=0;
-	// }else if(usbx.hdevclass==3)//USB键盘模拟手柄
-	// {
-	// 	KEYBRD_FCPAD_Decode(pt,0);
-	// 	PADdata0=fcpad.ctrlval;
-	// 	PADdata1=fcpad1.ctrlval; 
-	// }	
+{   
+	int is_aa_press;
+	int is_bb_press;
+//手柄1键值 [7:0]右7 左6 下5 上4 Start3 Select2 B1 A0  
+//手柄2键值 [7:0]右7 左6 下5 上4 Start3 Select2 B1 A0  
+	continue_cnt++;
+	if(continue_cnt > 3)
+	{
+		continue_cnt = 0;
+		need_swap = !need_swap;
+	}
+	is_aa_press = input_key_aa_press();
+	is_bb_press = input_key_bb_press();
+	PADdata0 = 0;
+	PADdata0 |=(input_key_up_press())<<4;
+	PADdata0 |=(input_key_do_press())<<5;
+	PADdata0 |=(input_key_lf_press())<<6;
+	PADdata0 |=(input_key_rg_press())<<7;
+
+	PADdata0 |=(input_key_sa_press())<<0;
+	PADdata0 |=(input_key_sb_press())<<1;
+	PADdata0 |=(input_key_st_press())<<3;
+	PADdata0 |=(input_key_se_press())<<2;
+
+	if(is_aa_press)
+	{
+		if(need_swap)
+		{
+			PADdata0 |=1<<0;
+		}
+		else
+		{
+			PADdata0 &=1<<0;
+		}
+	}
+	if(is_bb_press)
+	{
+		if(need_swap)
+		{
+			PADdata0 |=1<<1;
+		}
+		else
+		{
+			PADdata0 &=1<<1;
+		}
+	}
 }    
 //nes模拟器主循环
 void nes_emulate_frame(void)

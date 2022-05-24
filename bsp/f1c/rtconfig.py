@@ -40,7 +40,7 @@ if PLATFORM == 'gcc':
     OBJDUMP = PREFIX + 'objdump'
     OBJCPY  = PREFIX + 'objcopy'
 
-    DEVICE  = ' -mcpu=arm926ej-s -ffunction-sections -fdata-sections'
+    DEVICE  = ' -mcpu=arm926ej-s -ffunction-sections -fdata-sections -fsigned-char'
     CFLAGS  = DEVICE + ' -Wall'
     AFLAGS  = ' -c' + DEVICE + ' -x assembler-with-cpp'
     LFLAGS  = DEVICE + ' -nostartfiles -Wl,--build-id=none,--gc-sections,-Map=rtthread.map,-cref,-u,system_vectors -T link.lds'

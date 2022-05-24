@@ -451,7 +451,15 @@ void USB_HOST_MODE(void)
 	//USBC_Writeb(reg, USBC_REG_DEVCTL(USBC0_BASE));
 	USBC_Writeb(0x80, USBC_REG_HSEOF(USBC0_BASE));
 }
-
+void usb_host_force_to_ls_mode(void)
+{
+	//unsigned char reg;
+	//reg=USBC_Readb(USBC_REG_DEVCTL(USBC0_BASE));
+	//rt_kprintf("USBC_REG_DEVCTL reg=0x%x\n",reg);
+	//reg=0x0d;
+	//USBC_Writeb(reg, USBC_REG_DEVCTL(USBC0_BASE));
+	USBC_Writeb(0xD0, USBC_REG_LSEOF(USBC0_BASE));
+}
 /* get usb misc's interrupt flag */
 u32 USBC_INT_MiscPending(void)
 {

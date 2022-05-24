@@ -18,6 +18,7 @@
         "xmemory0": "cpp",
         "xtr1common": "cpp",
         "istream": "c",
-        "system_error": "cpp"
+        "system_error": "cpp",
+        "drv_input.h": "c"
     }
 }

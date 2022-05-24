@@ -212,7 +212,7 @@ static void f1c100s_tcon_set_mode(lcd_cfg_Struct * pdat)
 	write32((uint32_t)&tcon->tcon0_timing_v, ((total * 2) << 16) | ((bp - 1) << 0));
 	write32((uint32_t)&tcon->tcon0_timing_sync, ((pdat->h_sync_len - 1) << 16) | ((pdat->v_sync_len - 1) << 0));
 
-	write32((uint32_t)&tcon->tcon0_hv_intf, 0);
+	write32((uint32_t)&tcon->tcon0_hv_intf, 0);//0 RGB 0x0a0000 BGR
 	write32((uint32_t)&tcon->tcon0_cpu_intf, 0);
 
 	if(pdat->line_per_pixel == 18 || pdat->line_per_pixel == 16)

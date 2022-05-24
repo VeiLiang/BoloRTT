@@ -243,6 +243,7 @@ int InfoNES_SoundOpen( int samples_per_sync, int sample_rate )
 /* Sound Close */
 void InfoNES_SoundClose( void )
 {
+	
 }
 
 WORD final_wave[367*5];

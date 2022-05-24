@@ -33,7 +33,7 @@
 /* Memory Management */
 
 #define RT_USING_MEMPOOL
-/* RT_USING_MEMHEAP is not set */
+#define RT_USING_MEMHEAP
 /* RT_USING_NOHEAP is not set */
 #define RT_USING_SMALL_MEM
 /* RT_USING_SLAB is not set */
@@ -56,7 +56,7 @@
 
 #define RT_USING_COMPONENTS_INIT
 #define RT_USING_USER_MAIN
-#define RT_MAIN_THREAD_STACK_SIZE 100*1024
+#define RT_MAIN_THREAD_STACK_SIZE 3000*1024
 
 /* C++ features */
 
@@ -91,13 +91,13 @@
 
 /* elm-chan's FatFs, Generic FAT Filesystem Module */
 
-#define RT_DFS_ELM_CODE_PAGE 437
+#define RT_DFS_ELM_CODE_PAGE 936
 #define RT_DFS_ELM_WORD_ACCESS
-#define RT_DFS_ELM_USE_LFN_0
+/* RT_DFS_ELM_USE_LFN_0 is not set */
 /* RT_DFS_ELM_USE_LFN_1 is not set */
 /* RT_DFS_ELM_USE_LFN_2 is not set */
-/* RT_DFS_ELM_USE_LFN_3 is not set */
-#define RT_DFS_ELM_USE_LFN 0
+#define RT_DFS_ELM_USE_LFN_3
+#define RT_DFS_ELM_USE_LFN 3
 #define RT_DFS_ELM_MAX_LFN 255
 #define RT_DFS_ELM_DRIVES 2
 #define RT_DFS_ELM_MAX_SECTOR_SIZE 512
@@ -106,7 +106,7 @@
 #define RT_USING_DFS_DEVFS
 /* RT_USING_DFS_NET is not set */
 #define RT_USING_DFS_ROMFS
-/* RT_USING_DFS_RAMFS is not set */
+#define RT_USING_DFS_RAMFS
 /* RT_USING_DFS_UFFS is not set */
 /* RT_USING_DFS_JFFS2 is not set */
 /* RT_USING_DFS_NFS is not set */

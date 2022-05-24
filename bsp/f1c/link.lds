@@ -52,9 +52,18 @@ SECTIONS
         __rt_init_start = .;
         KEEP(*(SORT(.rti_fn*)))
         __rt_init_end = .;
+
+        
     } =0
     __text_end = .;
 
+
+    . = ALIGN(8);
+    __exidx_start = .;
+    .ARM.exidx : { *(.ARM.exidx* .gnu.linkonce.armexidx.*) }
+    __exidx_end = .;
+
+    
     __rodata_start = .;
     .rodata   : { *(.rodata) *(.rodata.*) *(.eh_frame) }
     __rodata_end = .;
@@ -131,6 +140,8 @@ SECTIONS
     }
     . = ALIGN(4);
     __bss_end = .;
+
+    
 
     /* Stabs debugging sections.  */
     .stab 0 : { *(.stab) }

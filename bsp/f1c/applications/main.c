@@ -15,10 +15,14 @@
 #include "logo_data.h"
 #include "drv_audio.h"
 #include "InfoNES.h"
+#include "drv_input.h"
 
 int fb_num = 0 ;
 unsigned int fb_addr[2] = {0x81800000,0x81A00000};
-
+void* GetMainFramebuf(void)
+{
+	return (void*)0x81800000;
+}
 // #include "test_jpg.h"
 static unsigned char jpeg_src[1024*1024]__attribute__ ((aligned (4096)));
 unsigned char jpeg_ydst[1920*1080]__attribute__ ((aligned (4096)));
@@ -76,7 +80,7 @@ void RefleshLcdWithTVD(unsigned char *ydat,unsigned char * cbcr,int w,int h)
 		}
 
 	}
-	Layer_SetFramBuffer(0,Tr);
+	Layer_SetFramBuffer(0,(uint32_t)Tr);
 }
 
 static void Show_Logo()
@@ -212,9 +216,9 @@ int main(int argc, char **argv)
 	jpeg_decoder_init();
 	// Sys_Servs_Init();//Services
 	Show_Logo();
-	HWCursor_Enable(HWC_ENABLE);
-	MainThreadCreat();
-	demo_create();
+	// HWCursor_Enable(HWC_ENABLE);
+	// MainThreadCreat();
+	// demo_create();
 	//TestLayer();
 	
 	rt_kprintf("Video clk %d \n",video_get_pll_clk());
@@ -226,10 +230,12 @@ int main(int argc, char **argv)
 	//i2c_f1c100s_init(0);
 	//dvp_camera_init(648,480,16);
 	//i2c_debugdump();
+	hw_gamepad_init();
 	f1c100s_audio_init();
-	// InfoNES_Load(nes_rom);
+	// InfoNES_Load(nes_rom);//Info Nes App
 	// InfoNES_Main();//program will floop in this function
-	nes_load(nes_rom,sizeof(nes_rom));
+	// nes_load(nes_rom,sizeof(nes_rom)); //program will floop in this function
+	StartNesGame("/rexuegedou.nes"); // program will floop in VirtuaNes
 	while(1)
 	{
 		rt_thread_delay(20);

@@ -239,7 +239,7 @@ void sunxi_udc_disable(void)
 	//USBC_Writew(0xffff, USBC_REG_INTTxE(USBC0_BASE));	
 	//USBC_Writew(0xffff, USBC_REG_INTRxE(USBC0_BASE));
 	//usb_otg_dump_reg_offset();	
-	//cfg_udc_command(SW_UDC_P_DISABLE);
+	cfg_udc_command(SW_UDC_P_DISABLE);
 
 
 	/* Set speed to unknown */
@@ -739,20 +739,12 @@ void sunxi_udc_enable()
 	usbprint("CONFIG_USB_GADGET_DUALSPEED: USBC_TS_MODE_HS\n");
 
 	USBC_Dev_ConfigTransferMode(USBC_TS_TYPE_BULK, USBC_TS_MODE_HS);
-#if 0
-	/* Enable reset and suspend interrupt interrupts */
-	USBC_INT_EnableUsbMiscUint( USBC_BP_INTUSB_SUSPEND);
-	USBC_INT_EnableUsbMiscUint( USBC_BP_INTUSB_RESUME);
-	USBC_INT_EnableUsbMiscUint( USBC_BP_INTUSB_RESET);
-	USBC_INT_EnableUsbMiscUint( USBC_BP_INTUSB_DISCONNECT);
-	USBC_INT_EnableUsbMiscUint( USBC_INTUSB_SOF);
-	USBC_INT_EnableUsbMiscUint( USBC_INTUSB_CONNECT);
-#endif	
+
 	USBC_INT_EnableUsbMiscUint( 0x3E);
 	/* Enable ep0 interrupt */
 	USBC_INT_EnableEp( USBC_EP_TYPE_TX, 0);
 
-	//cfg_udc_command(SW_UDC_P_ENABLE);
+	cfg_udc_command(SW_UDC_P_ENABLE);
 
 	return ;
 }

@@ -128,7 +128,9 @@ void rt_hw_trap_swi(struct rt_hw_register *regs)
         if (result == RT_EOK) return;
     }
     rt_hw_show_register(regs);
-
+#ifdef RT_USING_FINSH
+    list_thread();
+#endif
     rt_kprintf("software interrupt\n");
     rt_hw_cpu_shutdown();
 }
